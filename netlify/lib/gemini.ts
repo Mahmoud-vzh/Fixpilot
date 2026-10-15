@@ -7,6 +7,19 @@ export class GeminiQuotaError extends Error {
   }
 }
 
+// These fields are safe to log. Never log the provider error payload, its
+// message, the request, images, credentials, or generated content.
+export class GeminiProviderFailure extends Error {
+  constructor(
+    public readonly source: 'http' | 'stream_event',
+    public readonly status: number,
+    message: string,
+  ) {
+    super(message);
+    this.name = 'GeminiProviderFailure';
+  }
+}
+
 export function geminiError(status: number, reason = ''): string {
   if (
     reason === 'API_KEY_INVALID' ||
@@ -94,7 +107,7 @@ export async function geminiOutput(
       payload?.error?.details
         ?.map((d) => d.reason)
         .find((r) => r && allowedReasons.includes(r)) || '';
-    throw new Error(geminiError(upstream.status, reason));
+    throw new GeminiProviderFailure('http', upstream.status, geminiError(upstream.status, reason));
   }
   if (!upstream.body)
     throw new Error('Gemini returned no response. Please retry.');
@@ -116,7 +129,8 @@ export async function geminiOutput(
       );
     }
     if (event.error?.code === 429) throw new GeminiQuotaError();
-    if (event.error) throw new Error(geminiError(event.error.code || 500));
+    if (event.error) throw new GeminiProviderFailure(
+      'stream_event', event.error.code || 500, geminiError(event.error.code || 500));
     if (event.promptFeedback?.blockReason)
       throw new Error(
         'Gemini could not safely process this request. Nothing was saved. Try a clearer description or contact a qualified technician.',

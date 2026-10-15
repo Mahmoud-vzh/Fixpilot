@@ -5,7 +5,7 @@ import {
   validateAgentOutput,
 } from '../../src/lib/diagnostic/schema';
 import { dangerous, safetyStop } from '../../src/lib/diagnostic/safety';
-import { geminiOutput, GeminiQuotaError } from './gemini';
+import { geminiOutput, GeminiQuotaError, GeminiProviderFailure } from './gemini';
 import { SYSTEM_PROMPT } from './prompt';
 import {
   hasDiagnosticContent,
@@ -165,8 +165,10 @@ export async function handleDiagnosis(
       identity.cookie,
     );
   }
+  let phase: 'provider' | 'validation' = 'provider';
+  let output = '';
   try {
-    const output = await (deps.model || geminiOutput)(
+    output = await (deps.model || geminiOutput)(
       key,
       deps.env('GEMINI_MODEL') || 'gemini-3.1-flash-lite',
       SYSTEM_PROMPT,
@@ -174,6 +176,7 @@ export async function handleDiagnosis(
       outputSchema,
       input.image,
     );
+    phase = 'validation';
     return reply({ state: validateAgentOutput(output, input.text) }, 200, identity.cookie);
   } catch (error) {
     // Never log or return request bodies, images, provider payloads or exceptions.
@@ -182,6 +185,43 @@ export async function handleDiagnosis(
     const timeout =
       error instanceof Error &&
       ['TimeoutError', 'AbortError'].includes(error.name);
+    // Only fixed diagnostic labels and bounded numeric HTTP status are logged.
+    // Do not log raw errors, user data, IPs, cookies, keys, or Gemini content.
+    let category = 'provider_other';
+    let providerStatus: number | undefined;
+    if (phase === 'validation') {
+      category = 'invalid_state';
+      try { JSON.parse(output); } catch { category = 'invalid_json'; }
+    } else if (error instanceof GeminiProviderFailure) {
+      category = error.source === 'http' ? 'provider_http' : 'provider_stream_http';
+      if (Number.isInteger(error.status) && error.status >= 400 && error.status <= 599)
+        providerStatus = error.status;
+    } else if (timeout) {
+      category = 'provider_timeout';
+    } else if (error instanceof TypeError) {
+      category = 'provider_transport';
+    } else if (error instanceof Error) {
+      // These values are compared against known internal constants, not logged.
+      switch (error.message) {
+        case 'The Gemini stream was invalid. Nothing was saved. Please retry.':
+          category = 'stream_invalid'; break;
+        case 'The Gemini response was interrupted. Nothing was saved. Please retry.':
+          category = 'stream_incomplete'; break;
+        case 'The model reached its response limit before finishing. Nothing was saved. Please retry with a shorter description.':
+          category = 'max_output_tokens'; break;
+        case 'Gemini returned no response. Please retry.':
+          category = 'no_response_body'; break;
+        case 'Model response exceeded the safe limit. Nothing was saved.':
+          category = 'output_size'; break;
+        case 'Gemini could not safely process this request. Nothing was saved. Try a clearer description or contact a qualified technician.':
+          category = 'provider_safety_block'; break;
+        case 'Gemini could not complete this diagnosis. Nothing was saved. Try a clearer description or contact a qualified technician.':
+          category = 'provider_finish_reason'; break;
+      }
+    }
+    console.warn('FixPilot live diagnosis failure', {
+      category, ...(providerStatus === undefined ? {} : { providerStatus }),
+    });
     return reply(
       {
         type: 'unavailable',
