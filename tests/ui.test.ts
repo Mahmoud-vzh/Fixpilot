@@ -10,7 +10,15 @@ import { SafetyWarning } from '../src/components/fixpilot/safety-warning';
 import { SAFETY_STOP_WARNING } from '../src/lib/diagnostic/safety';
 
 test('Safety checklist hides absence markers but preserves actual precautions', () => {
-  for (const steps of [[], [''], ['   '], ['None'], [' none. ', 'N/A', 'No safety warnings']]) {
+  for (const steps of [
+    [],
+    [''],
+    ['   '],
+    ['None'],
+    [' none. ', 'N/A', 'No safety warnings'],
+    ['None, standard connection.'],
+    [' NONE , standard connection '],
+  ]) {
     assert.equal(renderToStaticMarkup(createElement(SafetyChecklist, { steps })), '');
   }
   const warning = 'Disconnect power before inspecting connections.';
@@ -21,6 +29,11 @@ test('Safety checklist hides absence markers but preserves actual precautions', 
   assert.equal(html.split(warning).length - 1, 1);
   assert.match(html, /None of the wires should be touched\./);
   assert.doesNotMatch(html, /<li[^>]*>None<\/li>/);
+  const actionable = 'None, standard connection. Disconnect power before checking wires.';
+  assert.match(
+    renderToStaticMarkup(createElement(SafetyChecklist, { steps: [actionable] })),
+    /Disconnect power before checking wires/,
+  );
 });
 
 test('Test card omits empty safety callout and safety stops still show a warning', () => {
@@ -33,6 +46,7 @@ test('Test card omits empty safety callout and safety stops still show a warning
     }),
   );
   assert.doesNotMatch(renderCard('None', ['Observe the display.']), /Safety before action/);
+  assert.doesNotMatch(renderCard('None, standard connection.', ['Observe the display.']), /Safety before action/);
   const html = renderCard('None', ['Disconnect power before inspecting connections.']);
   assert.match(html, /Safety before action/);
   assert.match(html, /Disconnect power before inspecting connections\./);

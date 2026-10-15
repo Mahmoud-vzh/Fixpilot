@@ -4,7 +4,7 @@ export function normalizeSafetyWarning(
   value: string | null | undefined,
 ): string {
   const text = value?.trim() || '';
-  return /^(?:none(?: detected| identified)?|null|undefined|n\/a|not applicable|no safety warnings?|no safety concerns(?: identified)?)[.!。]*$/i.test(
+  return /^(?:none(?: detected| identified|\s*,\s*standard connection)?|null|undefined|n\/a|not applicable|no safety warnings?|no safety concerns(?: identified)?)[.!。]*$/i.test(
     text,
   )
     ? ''
