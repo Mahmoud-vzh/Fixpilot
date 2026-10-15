@@ -4,7 +4,7 @@
 
 FixPilot is an evidence-driven troubleshooting assistant for hardware and software, including laptops, networking, hobby robotics and embedded devices. It gathers observations, ranks possible causes, proposes a safe next test and saves a provisional diagnostic report. Four scripted guided demos use simulated evidence and run locally. Optional live diagnosis connects to Google Gemini through a server-side API, with bounded usage and structured-output validation.
 
-**[Open the live demo](https://fixpilot-ai.netlify.app/)** · [Testing](docs/VERIFICATION.md) · [Setup and deployment](docs/PUBLISH.md)
+**[Open the live demo](https://fixpilot-labs.netlify.app/)** · [Testing](docs/VERIFICATION.md) · [Setup and deployment](docs/PUBLISH.md)
 
 Guided demos work without a provider key. Live mode is disabled by default in a fresh installation; its availability on the hosted site is shown by the mode indicator.
 
@@ -158,17 +158,15 @@ Netlify Database manages connection configuration. Do not commit connection stri
 
 Use the intended GitHub repository/branch in Netlify. `netlify.toml` specifies `npm run build`, output `dist`, and Functions directory `netlify/functions`. Apply the quota migration before enabling live mode. Redeploy after changing runtime variables. Keep live off for a guided-only public demo; test with non-sensitive input before advertising live functionality.
 
-The hosted project is deployed from `main` at https://fixpilot-ai.netlify.app/. Follow [deployment instructions](docs/PUBLISH.md) and [verification checks](docs/VERIFICATION.md) for another deployment. A successful preview deployment is not a production release.
+The hosted project is deployed from `main` at https://fixpilot-labs.netlify.app/. Follow [deployment instructions](docs/PUBLISH.md) and [verification checks](docs/VERIFICATION.md) for another deployment. A successful preview deployment is not a production release.
 
 ## Development notes
 
-I started FixPilot as a personal learning project to connect my interest in computer engineering with robotics and practical troubleshooting. I wanted to explore a specific question: how can software help someone investigate a fault step by step, instead of presenting an immediate guess as a solution?
+I started FixPilot as a personal learning project to connect my computer engineering studies with my interest in robotics and practical troubleshooting. I wanted to explore how software could guide someone through a systematic investigation of a technical fault instead of jumping to an immediate answer.
 
-My work has focused on defining the project scope and diagnostic experience, choosing the hardware and software scenarios, and shaping how questions, evidence, possible causes and reports are presented. I drove repeated design revisions, tested the deployed interface, and used those observations to refine the layout and interaction. I also worked through the GitHub and Netlify publishing process and the configuration of live mode.
+My work has focused on defining the project scope, selecting hardware and software scenarios, and shaping the diagnostic experience: gathering evidence, exploring possible causes, choosing the next test, and presenting a useful report. I refined the interface through repeated design reviews and testing, and worked through the GitHub and Netlify publishing process, including live-mode configuration and usage limits. The repository documents the current implementation, its automated checks, and the areas that have not yet been verified.
 
-AI-assisted development tools supported parts of the implementation, debugging, automated test creation and documentation. I directed the iterations and made product and presentation decisions throughout the project. This repository records that development process and the checks actually performed.
-
-FixPilot is an ongoing learning project. My next priorities are to deepen my understanding of the implementation, evaluate diagnoses against documented fault cases, and test the interface across more devices. I am especially interested in extending this work toward hands-on robotics and embedded-system experiments.
+FixPilot remains an ongoing learning project. My next priorities are to deepen my understanding of its implementation, evaluate diagnoses against documented fault cases, test the interface across more devices, and explore hands-on robotics and embedded-system applications.
 
 ## License
 

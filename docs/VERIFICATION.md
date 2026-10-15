@@ -25,6 +25,22 @@ The GitHub Actions workflow runs source scanning, tests and the production build
 
 ## Recorded results
 
+### October 15, 2026 — clean repository CI
+
+[GitHub Actions run 38698020090](https://github.com/Mahmoud-vzh/Fixpilot/actions/runs/38698020090) completed successfully for commit `97b63b4331396524d4b1b02e0c103f8f0fd5a5a1` on `main`.
+
+| Check | Observed result |
+| --- | --- |
+| Dependency installation (`npm ci`) | Passed |
+| Source/configuration scan | 69 text files inspected; no findings |
+| Automated suite | 33 tests passed; 0 failed |
+| TypeScript and Vite build | Passed |
+| Built frontend scan | 7 text files inspected; no findings |
+
+These results come from that CI run's job steps and logs. They do not establish production accessibility, live Gemini functionality or manual browser behavior. No live Gemini request was made during this review. The earlier manual observations below remain dated records, not a new verification of the current deployment.
+
+### October 12, 2026 — earlier checks
+
 Checks executed on October 12, 2026:
 
 | Check | Observed result |

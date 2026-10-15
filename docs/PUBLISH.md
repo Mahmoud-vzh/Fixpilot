@@ -6,7 +6,7 @@ FixPilot runs on Netlify with Git-based deployment.
 | --- | --- |
 | Repository | https://github.com/Mahmoud-vzh/Fixpilot |
 | Production branch | `main` |
-| Hosted application | https://fixpilot-ai.netlify.app/ |
+| Hosted application | https://fixpilot-labs.netlify.app/ |
 | Build command | `npm run build` |
 | Publish directory | `dist` |
 | Functions directory | `netlify/functions` |
