@@ -1,0 +1,216 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "device": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "problem_summary": {
+      "type": "string"
+    },
+    "confirmed_symptoms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cause": {
+            "type": "string"
+          },
+          "probability": {
+            "type": "number"
+          },
+          "change": {
+            "type": "string",
+            "enum": [
+              "up",
+              "down",
+              "same",
+              "ruled_out"
+            ]
+          },
+          "supporting_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contradicting_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "cause",
+          "probability",
+          "change",
+          "supporting_evidence",
+          "contradicting_evidence"
+        ]
+      }
+    },
+    "tests_completed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "result"
+        ]
+      }
+    },
+    "next_test": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "difficulty": {
+              "type": "string"
+            },
+            "estimated_time": {
+              "type": "string"
+            },
+            "required_tools": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "safety": {
+              "type": "string"
+            },
+            "instructions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "outcomes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "purpose",
+            "difficulty",
+            "estimated_time",
+            "required_tools",
+            "safety",
+            "instructions",
+            "outcomes"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "diagnosis_confidence": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "investigating",
+        "diagnosed",
+        "safety_stop"
+      ]
+    },
+    "assistant_message": {
+      "type": "string"
+    },
+    "safety_warning": {
+      "type": "string"
+    },
+    "repair_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification": {
+      "type": "string"
+    },
+    "cost": {
+      "type": "string"
+    },
+    "image_observations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "image_interpretations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "device",
+    "category",
+    "problem_summary",
+    "confirmed_symptoms",
+    "unknowns",
+    "hypotheses",
+    "tests_completed",
+    "next_test",
+    "diagnosis_confidence",
+    "status",
+    "assistant_message",
+    "safety_warning",
+    "repair_plan",
+    "verification",
+    "cost",
+    "image_observations",
+    "image_interpretations",
+    "timeline"
+  ]
+}
