@@ -18,6 +18,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { DiagnosticState, DiagnosticTest } from '@/lib/diagnostic/types';
+import { normalizeSafetyWarning } from '@/lib/diagnostic/safety';
 export function estimate(value: number, mode: 'demo' | 'live') {
   return mode === 'live' ? `~${Math.round(value / 5) * 5}%` : `${value}%`;
 }
@@ -198,13 +199,14 @@ export function HypothesisPanel({
   );
 }
 export function SafetyChecklist({ steps }: { steps: string[] }) {
-  return steps.length ? (
+  const warnings = [...new Set(steps.map(normalizeSafetyWarning).filter(Boolean))];
+  return warnings.length ? (
     <div className="safety-checklist">
       <ShieldCheck size={19} />
       <div>
         <strong>Safety before action</strong>
         <ul>
-          {[...new Set(steps)].map((s, i) => (
+          {warnings.map((s, i) => (
             <li key={i} dir="auto">
               {s}
             </li>
