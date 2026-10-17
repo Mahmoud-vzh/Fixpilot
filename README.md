@@ -10,7 +10,13 @@ Guided demos work without a provider key. Live mode is disabled by default in a 
 
 ## Project Preview
 
-![FixPilot dashboard in dark mode](docs/screenshots/fixpilot-dark.png)
+![FixPilot dashboard in dark mode](docs/screenshots/Fixpilot-labs.png)
+
+
+
+https://github.com/user-attachments/assets/19312f07-c1b5-4f5c-93a7-519002647cdf
+
+
 
 ## Features
 
