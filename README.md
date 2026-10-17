@@ -12,11 +12,15 @@ Guided demos work without a provider key. Live mode is disabled by default in a 
 
 ![FixPilot dashboard in dark mode](docs/screenshots/Fixpilot-labs.png)
 
+## Watch FixPilot in Action
 
+A 59-second recording of a live diagnostic session.
+
+Starting from a laptop that powers on but shows a black screen, FixPilot uses Google Gemini to investigate the issue, rank possible causes, and recommend targeted diagnostic tests. When the user cannot perform a suggested test, FixPilot adapts by proposing an alternative instead of repeating the same instructions. The session concludes with a saved report documenting the diagnostic progress and current assessment.
 
 https://github.com/user-attachments/assets/19312f07-c1b5-4f5c-93a7-519002647cdf
 
-
+> **Note:** This is a recorded session, not an accuracy benchmark. Cause weights are model-estimated relative values, not measured probabilities. Diagnostic suggestions are provisional and require verification; FixPilot is not a substitute for a qualified technician.
 
 ## Features
 
