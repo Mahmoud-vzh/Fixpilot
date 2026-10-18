@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file."
+title: "FixPilot"
+type: software
+version: "1.0.0"
+date-released: "2026-10-18"
+abstract: "Evidence-driven troubleshooting assistant with guided demos and optional live diagnosis through Google Gemini."
+authors:
+  - family-names: "Valizadeh"
+    given-names: "Mahmoud"
+repository-code: "https://github.com/Mahmoud-vzh/Fixpilot"
+url: "https://fixpilot-labs.netlify.app/"
+license: "MIT"
+keywords:
+  - troubleshooting
+  - diagnostics
+  - hardware
+  - software
