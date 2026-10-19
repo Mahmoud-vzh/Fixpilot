@@ -2,7 +2,7 @@
 
 ## Reproduce automated checks
 
-Use Node.js 22.13 or later:
+Use Node.js 24 (npm 11):
 
 ```sh
 npm ci

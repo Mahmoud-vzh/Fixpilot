@@ -140,7 +140,7 @@ Functions set their own no-store/nosniff headers. Config varies by cookie. Diagn
 
 ## Local setup
 
-Use Node.js 22.13 or later and npm:
+Use Node.js 24 (npm 11):
 
 ```sh
 npm ci
