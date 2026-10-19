@@ -132,7 +132,7 @@ FixPilot is **not a substitute for a qualified technician**. Models can hallucin
 
 ## Security controls
 
-`netlify.toml` sets CSP and static response headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, `X-Frame-Options: DENY` and a Permissions Policy disabling camera, microphone and geolocation. CSP restricts scripts/connections/fonts to the same origin, disables objects and framing, and restricts form actions/base URLs. Inline styles are allowed; images allow the same origin, data/blob URLs and the existing Unsplash allowlist. The bundled banner does not depend on Unsplash.
+`netlify.toml` sets CSP and static response headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, `X-Frame-Options: DENY` and a Permissions Policy disabling camera, microphone and geolocation. CSP restricts scripts/connections/fonts to the same origin, disables objects and framing, and restricts form actions/base URLs. Inline styles are allowed; images are restricted to the same origin and data/blob URLs.
 
 Functions set their own no-store/nosniff headers. Config varies by cookie. Diagnosis checks the request origin, validates bounded payloads, applies safety checks and reserves quota transactionally. Keys are read only in server code and must never use a `VITE_` prefix.
 
