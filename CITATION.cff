@@ -1,13 +1,19 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata in this file."
-title: "FixPilot"
+title: "FixPilot: Evidence-Driven Troubleshooting Assistant"
 type: software
 version: "1.0.0"
 date-released: "2026-10-20"
+doi: "10.5281/zenodo.23493280"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23493279"
+    description: "Concept DOI for all versions of FixPilot."
 abstract: "Evidence-driven troubleshooting assistant with guided demos and optional live diagnosis through Google Gemini."
 authors:
   - family-names: "Valizadeh"
     given-names: "Mahmoud"
+    orcid: "https://orcid.org/0009-0005-3547-6679"
 repository-code: "https://github.com/Mahmoud-vzh/Fixpilot"
 url: "https://fixpilot-labs.netlify.app/"
 license: "MIT"

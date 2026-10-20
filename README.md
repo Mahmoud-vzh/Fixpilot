@@ -1,6 +1,7 @@
 # FixPilot
 
 ![CI](https://github.com/Mahmoud-vzh/Fixpilot/actions/workflows/check.yml/badge.svg)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23493279.svg)](https://doi.org/10.5281/zenodo.23493279)
 
 FixPilot is an evidence-driven troubleshooting assistant for hardware and software, including laptops, networking, hobby robotics and embedded devices. It gathers observations, ranks possible causes, proposes a safe next test and saves a provisional diagnostic report. Four scripted guided demos use simulated evidence and run locally. Optional live diagnosis connects to Google Gemini through a server-side API, with bounded usage and structured-output validation.
 
@@ -179,6 +180,14 @@ I started FixPilot as a personal learning project to connect my computer enginee
 My work has focused on defining the project scope, selecting hardware and software scenarios, and shaping the diagnostic experience: gathering evidence, exploring possible causes, choosing the next test, and presenting a useful report. I refined the interface through repeated design reviews and testing, and worked through the GitHub and Netlify publishing process, including live-mode configuration and usage limits. The repository documents the current implementation, its automated checks, and the areas that have not yet been verified.
 
 FixPilot remains an ongoing learning project. My next priorities are to deepen my understanding of its implementation, evaluate diagnoses against documented fault cases, test the interface across more devices, and explore hands-on robotics and embedded-system applications.
+
+## Citation
+
+To cite FixPilot v1.0.0, use the [archived software release](https://doi.org/10.5281/zenodo.23493280):
+
+> Valizadeh, M. (2026). *FixPilot: Evidence-Driven Troubleshooting Assistant* (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23493280
+
+The [concept DOI](https://doi.org/10.5281/zenodo.23493279) represents FixPilot across versions. The author's [ORCID](https://orcid.org/0009-0005-3547-6679) identifies Mahmoud Valizadeh. See [CITATION.cff](CITATION.cff) for machine-readable citation metadata.
 
 ## License
 
