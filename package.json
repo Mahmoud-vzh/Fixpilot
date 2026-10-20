@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "license": "MIT",
+  "author": "Mahmoud Valizadeh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahmoud-vzh/Fixpilot.git"
+  },
   "engines": {
     "node": ">=24"
   },

@@ -138,6 +138,8 @@ Functions set their own no-store/nosniff headers. Config varies by cookie. Diagn
 
 `npm run scan` checks tracked-source/config candidates with the project's scanner; `npm run build` also scans the built frontend. Passing this heuristic scan is not a comprehensive Git-history secret audit. CI runs the scan, tests and build. See [verification](docs/VERIFICATION.md) for actual checks and limitations.
 
+For details on security controls, data handling, and known limitations, see [Security and privacy](docs/SECURITY_REVIEW.md).
+
 ## Local setup
 
 Use Node.js 24 (npm 11):
