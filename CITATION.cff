@@ -3,7 +3,7 @@ message: "If you use this software, please cite it using the metadata in this fi
 title: "FixPilot"
 type: software
 version: "1.0.0"
-date-released: "2026-10-18"
+date-released: "2026-10-20"
 abstract: "Evidence-driven troubleshooting assistant with guided demos and optional live diagnosis through Google Gemini."
 authors:
   - family-names: "Valizadeh"

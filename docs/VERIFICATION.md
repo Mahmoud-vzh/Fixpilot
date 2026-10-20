@@ -25,6 +25,16 @@ The GitHub Actions workflow runs source scanning, tests and the production build
 
 ## Recorded results
 
+### October 20, 2026 — manual device check
+
+On October 20, 2026, a guided-demo session was created on a laptop at https://fixpilot-labs.netlify.app and the site was then opened on a separate phone. The phone showed no history from the laptop.
+
+| Check | Observed result |
+| --- | --- |
+| History isolation between two devices (manual) | One laptop and one separate phone: no sessions were shared |
+
+This was a single manual check on one pair of devices. It does not cover other browsers, networks, long-running sessions or live-mode usage.
+
 ### October 15, 2026 — clean repository CI
 
 [GitHub Actions run 38698020090](https://github.com/Mahmoud-vzh/Fixpilot/actions/runs/38698020090) completed successfully for commit `97b63b4331396524d4b1b02e0c103f8f0fd5a5a1` on `main`.
@@ -65,7 +75,7 @@ The following have not been established by these checks:
 - Full accessibility or WCAG conformance.
 - Complete live-interface regression testing, including usage-counter refresh after a provider response.
 - Production quota exhaustion, concurrency or load behavior.
-- Manual history isolation between two independent browsers; storage mocks provide narrower coverage.
+- Manual history isolation was checked once, on one laptop and one phone (October 20, 2026); other browsers, devices and networks were not checked, and automated storage mocks provide the broader coverage.
 - Real-image diagnostic quality or resistance to prompt injection beyond the test fixtures.
 
 Guided evidence is simulated. Live cause weights are estimates under a single-main-cause assumption, not measured probabilities. FixPilot is not a substitute for a qualified technician.
